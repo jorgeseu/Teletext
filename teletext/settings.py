@@ -119,8 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATIC_URL = 'core/templates/static/'
+MEDIA_URL = 'core/media/'
 STATIC_ROOT = '/var/www/teletext/teletext_core/teletext/teletext/core/templates/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
