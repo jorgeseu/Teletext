@@ -56,7 +56,7 @@ ROOT_URLCONF = 'teletext.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/build/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,9 +122,10 @@ USE_TZ = True
 STATIC_URL = 'core/templates/static/'
 MEDIA_URL = 'core/media/'
 STATIC_ROOT = '/var/www/teletext/teletext_core/teletext/teletext/core/templates/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static')
+#]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/build/static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
