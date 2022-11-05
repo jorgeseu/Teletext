@@ -6,7 +6,7 @@ from django.db import models
 class ProgramItem(models.Model):
 	program_ID = models.CharField(max_length=200)
 	program_date = models.DateField()
-	program_data = models.CharField()
+	program_data = models.TextField(blank=True)
 
 	class Meta:
 		verbose_name_plural = "Program data"
