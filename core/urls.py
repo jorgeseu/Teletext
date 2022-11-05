@@ -7,6 +7,9 @@ from . import weatherview
 urlpatterns = [
     path('', views.homepage),
     path('weather/', weatherview.weather_call),
+    path('ProgramItems/', views.ProgramItems),
+    path('ProgramItems/<int:pk>/', views.Program_detail),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
