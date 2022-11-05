@@ -3,6 +3,18 @@ from django.contrib.auth.models import User
 from django.db import models
 #from oauth2client.contrib.django_util.models import CredentialsField
 
+class ProgramItem(models.Model):
+	program_ID = models.CharField(max_length=200)
+	program_date = models.DateField()
+	program_data = models.CharField()
+
+	class Meta:
+		verbose_name_plural = "Program data"
+		unique_together = ('program_ID', 'program_date',)
+
+	def __str__(self):
+		return self.program_ID
+
 # Create your models here.
 
 #class CredentialsModel(models.Model):
