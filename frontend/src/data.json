@@ -1,0 +1,26 @@
+{
+    "contents": [
+      {
+        "name": "Pogoda",
+        "slug": "pogoda",
+        "id": 1,
+        "description":
+          "Pogoda dobra XDDDDD"
+      },
+      {
+        "name": "kursy walut",
+        "slug": "kursy",
+        "id": 2,
+        "description":
+          "Kursy walut lorem ipsum jakieśóóóżź słowa"
+      },
+      {
+        "name": "Giełłłdąąą",
+        "slug": "gielda",
+        "id": 3,
+        "description":
+          "Gielda lorem ipsum jakies slowa"
+      }
+    ]
+  }
+  
