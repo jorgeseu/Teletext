@@ -19,10 +19,10 @@
               <a class="nav-link" href="#">O nas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rejestracja</a>
+              <router-link to="/signup">Rejestracja</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Logowanie</a>
+              <router-link to="/login">Logowanie</router-link>
             </li>
           </ul>
         </div>
@@ -38,6 +38,25 @@
       </footer>
  </div>
 </template>
+
+<script>
+    export default {
+        name: 'App',
+        data() {
+            return {
+                authenticated: false,
+            }
+        },
+        methods: {
+            setAuthenticated(status) {
+                this.authenticated = status;
+            },
+            logout() {
+                this.authenticated = false;
+            }
+        }
+    }
+</script>
 
 <style src="@/assets/css/bootstrap.css" type="text/css">
 </style>
