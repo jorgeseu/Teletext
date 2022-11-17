@@ -22,5 +22,5 @@ class ProgramItem(models.Model):
 #    task - models.CharField(max_length = 80, null = True)
 #    updated_time = models.CharField(max_length = 80, null = True)
 
-class CredentialsAdmin(admin.ModelAdmin):
-    pass
+#class CredentialsAdmin(admin.ModelAdmin):
+#    pass
