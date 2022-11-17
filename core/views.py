@@ -71,57 +71,57 @@ def Program_detail(request, pk):
     return HttpResponse(status=204)
 # Create your views here.
 def homepage(request):
-  status = True
+  # status = True
+  #
+  # if not request.user.is_authenticated:
+  #   return HttpResponseRedirect('admin')
+  #
+  # storage = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
+  # credential = storage.get()
+  # try:
+  #   access_token = credential.access_token
+  #   resp, cont = Http().request("https://www.googleapis.com/auth/gmail.readonly",
+  #                               headers={'Host': 'www.googleapis.com',
+  #                                        'Authorization': access_token})
+  # except:
+  #   status = False
+  #   print('Not Found')
 
-  if not request.user.is_authenticated:
-    return HttpResponseRedirect('admin')
-
-  storage = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
-  credential = storage.get()
-  try:
-    access_token = credential.access_token
-    resp, cont = Http().request("https://www.googleapis.com/auth/gmail.readonly",
-                                headers={'Host': 'www.googleapis.com',
-                                         'Authorization': access_token})
-  except:
-    status = False
-    print('Not Found')
-
-  return render(request, 'index.html', {'status': status})
+  return render(request=request, template_name='main/homepage.html', context={})
 
 
 #GMAIL API IMPLEMENTATION
 
-FLOW = flow_from_clientsecrets(
-    settings.GOOGLE_OAUTH2_CLIENT_SECRETS_JSON,
-    scope='https://www.googleapis.com/auth/gmail.readonly',
-    redirect_uri='http://http://45.9.188.43:9090//oauth2callback', # do zmiany przy starcie na PRD
-    prompt='consent')
+# FLOW = flow_from_clientsecrets(
+#     settings.GOOGLE_OAUTH2_CLIENT_SECRETS_JSON,
+#     scope='https://www.googleapis.com/auth/gmail.readonly',
+#     redirect_uri='http://http://45.9.188.43:9090//oauth2callback', # do zmiany przy starcie na PRD
+#     prompt='consent')
 
-def gmail_authenticate(request):
-  storage = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
-  credential = storage.get()
-  if credential is None or credential.invalid:
-    FLOW.params['state'] = xsrfutil.generate_token(settings.SECRET_KEY,
-                                                   request.user)
-    authorize_url = FLOW.step1_get_authorize_url()
-    return HttpResponseRedirect(authorize_url)
-  else:
-    http = httplib2.Http()
-    http = credential.authorize(http)
-    service = build('gmail', 'v1', http=http)
-    print('access_token = ', credential.access_token)
-    status = True
-
-    return render(request, 'main/homepage.html', {'status': status})
-
-def auth_return(request):
-  get_state=bytes(request.GET.get('state'), 'utf-8')
-  if not xsrfutil.validate_token(settings.SECRET_KEY, get_state,
-                                 request.user):
-    return HttpResponseBadRequest()
-  credential = FLOW.step2_exchange(request.GET.get('code'))
-  storange = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
-  storange.put(credential)
-  print("access_token: %s" % credential.access_token)
-  return HttpResponseRedirect("/")
+# def gmail_authenticate(request):
+#   storage = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
+#   credential = storage.get()
+#   if credential is None or credential.invalid:
+#     FLOW.params['state'] = xsrfutil.generate_token(settings.SECRET_KEY,
+#                                                    request.user)
+#     authorize_url = FLOW.step1_get_authorize_url()
+#     return HttpResponseRedirect(authorize_url)
+#   else:
+#     http = httplib2.Http()
+#     http = credential.authorize(http)
+#     service = build('gmail', 'v1', http=http)
+#     print('access_token = ', credential.access_token)
+#     status = True
+#
+#     return render(request, 'main/homepage.html', {'status': status})
+#
+# def auth_return(request):
+#   get_state=bytes(request.GET.get('state'), 'utf-8')
+#   if not xsrfutil.validate_token(settings.SECRET_KEY, get_state,
+#                                  request.user):
+#     return HttpResponseBadRequest()
+#   credential = FLOW.step2_exchange(request.GET.get('code'))
+#   storange = DjangoORMStorage(gCredentialsModel, 'id', request.user, 'credential')
+#   storange.put(credential)
+#   print("access_token: %s" % credential.access_token)
+#   return HttpResponseRedirect("/")
