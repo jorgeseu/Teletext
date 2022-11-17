@@ -13,9 +13,9 @@ from .models import ProgramItem
 import httplib2
 from googleapiclient.discovery import build
 from teletext import settings
-from oauth2client.contrib import xsrfutil
-from oauth2client.client import flow_from_clientsecrets
-from oauth2client.contrib.django_util.storage import DjangoORMStorage
+#from oauth2client.contrib import xsrfutil
+#from oauth2client.client import flow_from_clientsecrets
+#from oauth2client.contrib.django_util.storage import DjangoORMStorage
 from httplib2 import Http
 from teletext_helper import Fetching_current_data
 
