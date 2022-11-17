@@ -1,4 +1,4 @@
-from frontend.models import ProgramItem
+from .models import ProgramItem
 import requests
 from datetime import date, timedelta
 
