@@ -17,7 +17,7 @@ from teletext import settings
 #from oauth2client.client import flow_from_clientsecrets
 #from oauth2client.contrib.django_util.storage import DjangoORMStorage
 from httplib2 import Http
-from teletext_helper import Fetching_current_data
+from .teletext_helper import Fetching_current_data
 
 
 @csrf_exempt
