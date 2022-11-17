@@ -1,12 +1,21 @@
 {% load static %}
 <script src="{% static 'homepage.js' %}"></script>
 <head>
-Teletext
+    <meta charset="UTF-8">
+    <!--<script src="{% static 'js/main.js' %}"></script>-->
+    <title>Google Login</title>
 </head>
-
 <body>
+<div>
+    <div>
+        {% if not status %}
+            <a href="/gmailAuthenticate" onclick="gmailAuthenticate()" title="Google">Google</a>
+        {% else %}
+            <p>Your are verified</p>
+        {% endif %}
+    </div>
 
-
+</div>
 </body>
 
 

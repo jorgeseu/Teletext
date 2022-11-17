@@ -135,3 +135,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/build/static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
+
+GOOGLE_OAUTH2_CLIENT_SECRETS_JSON = 'client_secrets.json'
