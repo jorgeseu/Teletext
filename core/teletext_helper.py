@@ -27,9 +27,9 @@ class Fetching_current_data():
         print("d3 =", d3)
         response = requests.get(link_1 + d3 + link_2)
         p_data = response.text
-        c_item= ProgramItem(program_ID=prog_ID, program_date=prog_date, data=p_data)
+        c_item= ProgramItem(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
         try:
-            obj = ProgramItem.objects.get(program_ID=prog_ID, program_date=prog_date, data=p_data)
+            obj = ProgramItem.objects.get(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
         except UserToUserRole.DoesNotExist:
             c_item.save()
         obj = null
