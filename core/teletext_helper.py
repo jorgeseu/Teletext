@@ -13,12 +13,12 @@ class Fetching_current_data():
             n_day = date.today() + timedelta(i)
             #wzór https://www.tvp.pl/prasa/programTVP1/p0101_T1D.txt
             #tu pakujemy wynik
-            self.get_prog_date('TVP1', n_day, 'https://www.tvp.pl/prasa/programTVP1/p', '_T1D.txt')
-            self.get_prog_date('TVP2', n_day, 'https://www.tvp.pl/prasa/ProgramTVP2/p', '_T2D.txt')
-            self.get_prog_date('TVPINF', n_day, 'https://www.tvp.pl/prasa/TVPInfo/p', '_INF.txt')
-            self.get_prog_date('TVPKSP', n_day, 'https://www.tvp.pl/prasa/TVPSport/p', '_KSP.txt')
-            self.get_prog_date('TVPNK', n_day, 'https://www.tvp.pl/prasa/TVPNauka/p', '_NK.txt')
-            self.get_prog_date('TVPKTR', n_day, 'https://www.tvp.pl/prasa/TVPRozrywka/p', '_TRO.txt')
+            self.get_prog_data('TVP1', n_day, 'https://www.tvp.pl/prasa/programTVP1/p', '_T1D.txt')
+            self.get_prog_data('TVP2', n_day, 'https://www.tvp.pl/prasa/ProgramTVP2/p', '_T2D.txt')
+            self.get_prog_data('TVPINF', n_day, 'https://www.tvp.pl/prasa/TVPInfo/p', '_INF.txt')
+            self.get_prog_data('TVPKSP', n_day, 'https://www.tvp.pl/prasa/TVPSport/p', '_KSP.txt')
+            self.get_prog_data('TVPNK', n_day, 'https://www.tvp.pl/prasa/TVPNauka/p', '_NK.txt')
+            self.get_prog_data('TVPKTR', n_day, 'https://www.tvp.pl/prasa/TVPRozrywka/p', '_TRO.txt')
 
 
             #TVP2
