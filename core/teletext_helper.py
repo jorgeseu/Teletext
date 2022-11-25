@@ -32,7 +32,7 @@ class Fetching_current_data():
             obj = ProgramItem.objects.get(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
         except:
             c_item.save()
-        obj = null
+        del obj
 
 
 
