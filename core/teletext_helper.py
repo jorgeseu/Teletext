@@ -30,7 +30,7 @@ class Fetching_current_data():
         c_item= ProgramItem(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
         try:
             obj = ProgramItem.objects.get(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
-        except UserToUserRole.DoesNotExist:
+        except:
             c_item.save()
         obj = null
 
