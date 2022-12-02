@@ -14,10 +14,14 @@ class AnnoucementViev(APIView):
 
     #get request income do this
     def get(self, request):
-        annoucement = Annoucement.objects.all()
+        #only accepted annoucement
+        annoucement = Annoucement.objects.filter(annoucement_status = 'accepted')
         serializer = AnnoucementSerializer(annoucement, many = True)
         return Response(serializer.data)
 
-    #post request, create do this
-    # def post(self,request):
-    #     pass
+    #post request, to create do this
+    def post(self,request):
+        serializer = AnnoucementSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

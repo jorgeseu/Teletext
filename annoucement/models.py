@@ -4,6 +4,13 @@ from accounts.models import UserData
 
 # Create your models here.
 
+Annoucement_status  = (
+    ('pending', 'Wait for review'), # oczekujący na dodanie
+    ('accepted', 'Accepted'),
+    ('deleted', 'Deleted'),
+    ('suspend', 'Temporary suspended'), #zawieszony
+)
+
 
 class Annoucement_category(models.Model):
     category_name = models.CharField(max_length=50)
@@ -19,6 +26,7 @@ class Annoucement(models.Model):
     category_name = models.ForeignKey(Annoucement_category, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    annoucement_status = models.CharField(choices=Annoucement_status,max_length=40, default='pending')
 
     def __str__(self):
         return self.title

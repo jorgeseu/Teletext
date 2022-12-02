@@ -4,7 +4,7 @@ from .models import Annoucement_category, Annoucement
 class AnnoucementSerializer(ModelSerializer):
     class Meta:
         model = Annoucement
-        fields = ['id','user', 'title', 'description', 'category_name', 'created_at']
+        fields = ['id','user', 'title', 'description', 'category_name', 'created_at', 'annoucement_status']
 
 
 
