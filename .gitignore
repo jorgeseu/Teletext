@@ -2,3 +2,5 @@ node_modules/
 /myvenv/
 frontend/
 db.sqlite3
+__pychane__/
+pull_code.sh
