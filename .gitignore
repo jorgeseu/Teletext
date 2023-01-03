@@ -3,3 +3,5 @@ node_modules/
 frontend/
 db.sqlite3
 __pycache__/
+migrations/
+pull_code.sh
