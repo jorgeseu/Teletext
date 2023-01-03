@@ -15,9 +15,10 @@ class AnnoucementAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         is_staff = request.user.is_staff
+        is_superuser = request.user.is_superuser
         disabled_fields = set()  # type:
 
-        if is_staff:
+        if (is_staff and not is_superuser):
             disabled_fields |= {
                 'user',
                 'title',
