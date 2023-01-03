@@ -53,6 +53,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -61,8 +63,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
 ]
-# corse request allow
-
 
 ROOT_URLCONF = 'teletext.urls'
 
@@ -135,10 +135,9 @@ USE_TZ = True
 STATIC_URL = 'core/templates/static/'
 MEDIA_URL = 'core/media/'
 STATIC_ROOT = '/var/www/teletext/teletext_core/teletext/teletext/core/templates/static/'
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, 'static')
-#]
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/build/static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -191,3 +190,4 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 
 }
+GOOGLE_OAUTH2_CLIENT_SECRETS_JSON = 'client_secrets.json'
