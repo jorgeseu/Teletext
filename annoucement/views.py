@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .serializers import AnnoucementSerializer
-from .models import Annoucement
+from .serializers import AnnoucementSerializer ,AnnoucementCategorySerializer
+from .models import Annoucement , Annoucement_category
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -36,13 +36,30 @@ class AnnoucementViev(APIView):
     def patch(self, request):
         pass
 
-class AnnoucementUpdateView():
-    pass
+#get list of categories
+class AnnoucementCategory(APIView):
+
+    def get(self, request):
+        queryset = Annoucement_category.objects.all()
+        serializer = AnnoucementCategorySerializer(queryset, many=True)
+        return Response(serializer.data)
+
+#get Annoucement i specify category by id
+class AnnoucementsByCategory(APIView):
+
+    def get(self, request, id):
+        queryset = Annoucement.objects.filter(category_name=id)
+        serializer = AnnoucementSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 #update and delete temporary
-class AnnoucementDetail(generics.RetrieveUpdateDestroyAPIView):
+#put request to update delete request to delete
+class AnnoucementUpdateAndDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Annoucement.objects.all()
     serializer_class = AnnoucementSerializer
+
+
 
 # class AnnoucementDeleteView(DeleteView):
 #     # specify the model you want to use

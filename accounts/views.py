@@ -2,17 +2,20 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import UserSerializer
+from .serializers import UserSerializer, GetUserDetailsSerializer
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import  MyTokenObtainPairSerializer
+from .models import UserData
 
 from rest_framework.permissions import AllowAny
 
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework import status
+from rest_framework import status, request
 from rest_framework.permissions import IsAuthenticated
+
+from rest_framework import generics
 
 
 # Create your views here.
@@ -28,6 +31,20 @@ class RegisterView(APIView):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+   # permission_classes = (IsAuthenticated,)
+
+    queryset = UserData.objects.values('id', 'email', 'name')
+    serializer_class = GetUserDetailsSerializer
+
+
+    # def get_object(self):
+    #     id =
+    #     username = self.kwargs.get("username")
+    #     email = self.kwargs.get("email")
+    #     return id,username,email
 
 
 # class LogoutView(APIView):

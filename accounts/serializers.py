@@ -29,3 +29,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
 
         return token
+
+# mozna z jwt tokenu odczytac tez
+class GetUserDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserData
+        fields = ["id", "email", "name",]

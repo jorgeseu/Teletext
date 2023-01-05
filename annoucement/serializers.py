@@ -6,7 +6,10 @@ class AnnoucementSerializer(ModelSerializer):
         model = Annoucement
         fields = ['id','user', 'title', 'description', 'category_name', 'created_at', 'annoucement_status']
 
-
+class AnnoucementCategorySerializer(ModelSerializer):
+    class Meta:
+        model = Annoucement_category
+        fields = ['id','category_name']
 
 
 
