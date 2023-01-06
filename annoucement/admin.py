@@ -31,8 +31,8 @@ class AnnoucementAdmin(admin.ModelAdmin):
         return form
     # columnt format
     search_fields = ('title',)
-    list_display = ('title','category_name','annoucement_status')
-    list_filter = ('annoucement_status', 'category_name',)
+    list_display = ('title','category_name','annoucement_status','created_at')
+    list_filter = ('annoucement_status', 'category_name', 'created_at')
 
 
 @admin.register(Annoucement_category)
