@@ -3,7 +3,7 @@ from django.contrib.auth import urls
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
-from .views import RegisterView, UserDetail
+from .views import RegisterView, UserDetail, UserAnnoucements
 
 from rest_framework_simplejwt.views import (
     #TokenObtainPairView,
@@ -24,6 +24,7 @@ urlpatterns = [
     #path('login/', include('django.contrib.auth.urls'))
 
     path('api/profile/<int:pk>/', UserDetail.as_view(), name='profile_detail' ),
+    path('api/profile/annoucement', UserAnnoucements.as_view(), name='profile_annoucements' ),
     #path('api/api-auth/', include('rest_framework.urls')),
 
 
