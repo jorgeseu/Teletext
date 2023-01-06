@@ -20,7 +20,7 @@ class Annoucement_category(models.Model):
 
 
 class Annoucement(models.Model):
-    user =models.ForeignKey(UserData, on_delete=models.CASCADE)
+    user =models.ForeignKey(UserData, related_name='annoucement', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True,blank=True)
     category_name = models.ForeignKey(Annoucement_category, on_delete=models.CASCADE)
