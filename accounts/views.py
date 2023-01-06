@@ -26,9 +26,14 @@ from rest_framework import generics
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+
+        # responce only http status
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
