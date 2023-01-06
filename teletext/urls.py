@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 vue_urls = [
     path('', include('frontend.urls')),
@@ -24,8 +25,14 @@ vue_urls = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),
-    #path('/api', include(vue_urls)),
+
+
+    path('', include('core.urls')),
+    path('/api', include(vue_urls)),
+    path('accounts/', include('accounts.urls')),
+    path('ad/', include('annoucement.urls')),
+
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

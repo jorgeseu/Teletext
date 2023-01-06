@@ -1,0 +1,9 @@
+node_modules/
+/myvenv/
+frontend/
+db.sqlite3
+__pycache__/
+migrations/
+pull_code.sh
+package-lock.json
+package.json
