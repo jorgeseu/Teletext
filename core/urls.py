@@ -13,7 +13,6 @@ urlpatterns = [
     path('MODItems/<int:pk>/', views.MOD_detail),
     path('StatItems/', views.StatItems),
     path('StatItems/<int:pk>/', views.Stat_detail),
-    path("login/", include("allauth.urls")),
     #path('gmailAuthenticate/', views.gmail_authenticate),
     #path('oauthcallback/', views.Program_detail),
 ]
