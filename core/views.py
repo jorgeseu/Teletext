@@ -20,6 +20,7 @@ from teletext import settings
 #from oauth2client.contrib.django_util.storage import DjangoORMStorage
 from httplib2 import Http
 from .teletext_helper import Fetching_current_data
+from datetime import date
 
 
 @csrf_exempt
@@ -74,7 +75,7 @@ def Program_detail(request, pk):
 
 def MODItems(request):
   if(request.method == 'GET'):
-    MODItems = MOD_item.objects.get(message_date=today())
+    MODItems = MOD_item.objects.get(message_date=date.today())
     serializer = MODSerializer(MODItems)
     return JsonResponse(serializer.data, safe=False)
 def MOD_detail(request, pk):

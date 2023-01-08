@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils import timezone
-import datetime
+from datetime import date
 
 class Stat_item(models.Model):
     stat_ID = models.AutoField(primary_key=True)
     stat_message = models.CharField(max_length=200)
     stat_user = models.CharField(max_length=200)
-    stat_datetime = models.DateTimeField(default=datetime.now())
+    stat_datetime = models.DateField(default=date.today())
 
 
     class Meta:
