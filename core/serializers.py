@@ -1,7 +1,4 @@
 from rest_framework import routers,serializers,viewsets
-from .models import
-from mod_models import MOD_item
-from stat import Stat_item
 
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
