@@ -7,9 +7,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest, Http
 # API definition for task
 from .serializers import TaskSerializer, MODSerializer, StatSerializer
 # Task model
-from .models import ProgramItem
-from mod_models import MOD_item
-from stat import Stat_item
+from .models import ProgramItem, MOD_item, Stat_item
 
 #gfauth
 import httplib2
