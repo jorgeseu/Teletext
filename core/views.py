@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 # for sending response to the client
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest, HttpResponseRedirect
 # API definition for task
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, MODSerializer, StatSerializer
 # Task model
 from .models import ProgramItem
 from mod_models import MOD_item
@@ -75,7 +75,7 @@ def Program_detail(request, pk):
 def MODItems(request):
   if(request.method == 'GET'):
     MODItems = MOD_item.objects.get(message_date=today())
-    serializer = TaskSerializer(MODItems)
+    serializer = MODSerializer(MODItems)
     return JsonResponse(serializer.data, safe=False)
 def MOD_detail(request, pk):
   try:
@@ -88,7 +88,7 @@ def MOD_detail(request, pk):
     # parse the incoming information
     data = JSONParser().parse(request)
     # instanciate with the serializer
-    serializer = TaskSerializer(MOD_item, data=data)
+    serializer = MODSerializer(MOD_item, data=data)
     # check whether the sent information is okay
     if (serializer.is_valid()):
       # if okay, save it on the database
@@ -106,7 +106,7 @@ def MOD_detail(request, pk):
 def StatItems(request):
   if(request.method == 'GET'):
     Stat_items = Stat_item.objects.get(message_date=today())
-    serializer = TaskSerializer(Stat_items)
+    serializer = StatSerializer(Stat_items)
     return JsonResponse(serializer.data, safe=False)
 
 def Stat_detail(request, pk):
@@ -120,7 +120,7 @@ def Stat_detail(request, pk):
     # parse the incoming information
     data = JSONParser().parse(request)
     # instanciate with the serializer
-    serializer = TaskSerializer(Stat_item, data=data)
+    serializer = StatSerializer(Stat_item, data=data)
     # check whether the sent information is okay
     if (serializer.is_valid()):
       # if okay, save it on the database
