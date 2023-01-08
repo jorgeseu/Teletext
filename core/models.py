@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db import models
+from mod_models import MOD_item
+from stat import Stat_item
 #from oauth2client.contrib.django_util.models import CredentialsField
 #from django.core.urlresolvers import reverse
 class ProgramItem(models.Model):
