@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+import datetime
 
 class Stat_item(models.Model):
     stat_ID = models.AutoField(primary_key=True)
