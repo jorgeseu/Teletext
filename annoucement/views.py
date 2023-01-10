@@ -13,24 +13,25 @@ from django.views.generic.edit import CreateView , DeleteView, UpdateView
 
 # Create your views here.
 
-class AnnoucementViev(APIView):
+# class AnnoucementViev(APIView):
+#
+#     #chenge to by owner in future
+#     permission_classes = (IsAuthenticatedOrReadOnly,)
+#
+#     #get request income do this
+#     def get(self, request):
+#         #only accepted annoucement
+#         annoucement = Annoucement.objects.filter(annoucement_status = 'accepted')
+#         serializer = AnnoucementSerializer(annoucement, many = True)
+#         return Response(serializer.data)
+#
+#     #post request, to create do this
+#     def post(self,request):
+#         serializer = AnnoucementSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
 
-    #chenge to by owner in future
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-
-    #get request income do this
-    def get(self, request):
-        #only accepted annoucement
-        annoucement = Annoucement.objects.filter(annoucement_status = 'accepted')
-        serializer = AnnoucementSerializer(annoucement, many = True)
-        return Response(serializer.data)
-
-    #post request, to create do this
-    def post(self,request):
-        serializer = AnnoucementSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
 
 
 #get list of categories
@@ -41,7 +42,7 @@ class AnnoucementCategory(APIView):
         serializer = AnnoucementCategorySerializer(queryset, many=True)
         return Response(serializer.data)
 
-#get Annoucement i specify category by id
+#get Annoucements list specify by category, need category id
 class AnnoucementsByCategory(APIView):
 
     def get(self, request, id):
@@ -62,6 +63,7 @@ class AnnoucementList(generics.ListCreateAPIView):
 
 #update and delete
 #put request to update delete request to delete
+#allow only if is owner
 class AnnoucementUpdateAndDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Annoucement.objects.all()
     serializer_class = AnnoucementSerializer

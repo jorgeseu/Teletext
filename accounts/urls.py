@@ -24,7 +24,7 @@ urlpatterns = [
     #path('login/', include('django.contrib.auth.urls'))
 
     path('api/profile/<int:pk>/', UserDetail.as_view(), name='profile_detail' ),
-    path('api/profile/annoucement', UserAnnoucements.as_view(), name='profile_annoucements' ),
+    path('api/profile/annoucements', UserAnnoucements.as_view(), name='profile_annoucements' ),
     #path('api/api-auth/', include('rest_framework.urls')),
 
 

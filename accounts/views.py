@@ -29,11 +29,11 @@ class RegisterView(APIView):
 
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response({"detail": "success"},status=status.HTTP_201_CREATED)
 
 
-        # responce only http status
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        # responce detail info and  http status
+        return Response({"detail": "fail"},status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -44,7 +44,6 @@ class UserDetail(generics.RetrieveAPIView):
    # permission_classes = (IsAuthenticated,)
 
     queryset = UserData.objects.values('id', 'email', 'name')
-
     serializer_class = GetUserDetailsSerializer
 
 
