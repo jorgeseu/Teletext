@@ -31,6 +31,7 @@ urlpatterns = [
     path('/api', include(vue_urls)),
     path('accounts/', include('accounts.urls')),
     path('ad/', include('annoucement.urls')),
+    path('polls/', include('polls.urls')),
 
 
 ]
