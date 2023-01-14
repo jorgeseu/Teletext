@@ -31,7 +31,7 @@ oauthlib==2.1.0
 protobuf==4.21.8
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-PyJWT==1.7.0
+PyJWT==2.6.0
 pyparsing==3.0.9
 python-git==2018.2.1
 pytz==2022.4
