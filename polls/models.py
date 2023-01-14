@@ -28,7 +28,7 @@ class Choice(models.Model):
 class Vote(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice,related_name='choice', on_delete=models.CASCADE)
-    vote_user = models.ForeignKey(UserData, on_delete=models.CASCADE)
+    vote_user = models.ForeignKey(UserData, related_name='vote_user', on_delete=models.CASCADE)
     can_vote = models.BooleanField(default=True)
 
     # def user_can_vote(self, user):

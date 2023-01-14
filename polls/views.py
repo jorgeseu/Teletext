@@ -62,6 +62,7 @@ class ChoiceList(APIView):
 #votes list and create vote on specific choice
 class VoteList(APIView):
 
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     def get(self, request, pk, id):
         queryset = Vote.objects.filter(poll = pk , choice = id)
         serializer = VoteSerializer(queryset, many=True)
@@ -71,14 +72,15 @@ class VoteList(APIView):
         #sprawdzic
         serializer = VoteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user_voted = Vote.objects.filter(poll=pk, vote_user = self.request.user)
+        user_voted = Vote.objects.filter(poll=pk,choice=id, vote_user = self.request.user.id)
 
         if not user_voted.exists():
-            serializer.save()
+            #zmieniłem  serlaizer zeby zapisaywać usera z requesta (VoteSerializer)
+            serializer.save(vote_user=self.request.user)
             return Response(serializer.data)
 
-
-        return Response({"detail": "You can vote only once"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"detail": "You can vote only once"}, status=status.HTTP_400_BAD_REQUEST)
 
 #do wywalenia
 # class VoteListCount(APIView):
