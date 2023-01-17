@@ -8,3 +8,5 @@ migrations/
 pull_code.sh
 package-lock.json
 package.json
+/env
+*.env
