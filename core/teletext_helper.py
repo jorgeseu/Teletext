@@ -9,7 +9,7 @@ class Fetching_current_data():
 
     def fetch_data(self, commit=True):
         #fetching all programs here at once
-        for i in range(14):
+        for i in range(7):
             n_day = date.today() + timedelta(i)
             #wzór https://www.tvp.pl/prasa/programTVP1/p0101_T1D.txt
             #tu pakujemy wynik
