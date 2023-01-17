@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Google login</title>
+</head>
+<body>
+{% load socialaccount %}
+{% block content %}
+    ...
+    <button class="btn btn-outline-info">
+        <a href="{% provider_login_url 'google'%}?next=/">
+            <i class="fab fa-google"></i>
+            Login with Google
+        </a>
+    </button>
+    ...
+{% endblock content %}
+
+</body>
+</html>
