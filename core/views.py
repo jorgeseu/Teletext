@@ -73,9 +73,14 @@ def Program_detail(request, pk):
 
 def MODItems(request):
   if(request.method == 'GET'):
-    MODItems = MOD_item.objects.get(message_date=date.today())
-    serializer = MODSerializer(MODItems)
-    return JsonResponse(serializer.data, safe=False)
+    try:
+      MODItems = MOD_item.objects.get(message_date=date.today())
+      serializer = MODSerializer(MODItems)
+      return JsonResponse(serializer.data, safe=False)
+    except:
+      # respond with a 404 error message
+      return HttpResponse(status=400)
+
 def MOD_detail(request, pk):
   try:
     #obtain the task with the passed id
