@@ -12,4 +12,4 @@ class Stat_item(models.Model):
     class Meta:
         verbose_name_plural = "stat_message"
     def __str__(self):
-        return self.stat_ID
+        return self.stat_message

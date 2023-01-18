@@ -15,4 +15,4 @@ class MODSerializer(serializers.HyperlinkedModelSerializer):
 class StatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stat_item
-        fields = ['id', 'stat_ID', 'stat_message', 'stat_user', 'stat_datetime']
+        fields = [ 'stat_ID', 'stat_message', 'stat_user', 'stat_datetime']

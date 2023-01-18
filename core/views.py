@@ -109,7 +109,7 @@ def MOD_detail(request, pk):
 
 def StatItems(request):
   if(request.method == 'GET'):
-    Stat_items = Stat_item.objects.get(message_date=today())
+    Stat_items = Stat_item.objects.get(stat_datetime=date.today())
     serializer = StatSerializer(Stat_items)
     return JsonResponse(serializer.data, safe=False)
 

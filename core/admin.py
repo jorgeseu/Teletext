@@ -10,4 +10,8 @@ class MODItemAdmin(admin.ModelAdmin):
     search_fields = ('message_content',)
 
 
-admin.site.register(Stat_item)
+@admin.register(Stat_item)
+class StatItemsAdmin(admin.ModelAdmin):
+    list_display = ('stat_message', 'stat_user','stat_datetime', 'stat_ID')
+    list_filter = ['stat_message','stat_datetime',]
+    search_fields = ('message_content', 'stat_user',)
