@@ -18,6 +18,8 @@ from rest_framework import status, request
 from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import generics
+#stats
+from ..core.stats_helper import store_user_action
 
 
 # Create your views here.
@@ -28,6 +30,8 @@ class RegisterView(APIView):
         serializer = UserSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
+            # stats
+            store_user_action('Unlogged', 'User Registered')
             serializer.save()
             return Response({"detail": "success"},status=status.HTTP_201_CREATED)
 
