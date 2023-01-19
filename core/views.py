@@ -81,12 +81,17 @@ def Program_detail(request, pk):
 
 def MODItems(request):
   if(request.method == 'GET'):
-    MODItems = MOD_item.objects.get(message_date=date.today())
-    serializer = MODSerializer(MODItems)
-    # stat part
-    current_user = request.user
-    store_user_action(current_user.id, 'Message of the day request')
-    return JsonResponse(serializer.data, safe=False)
+    try:
+      MODItems = MOD_item.objects.get(message_date=date.today())
+      serializer = MODSerializer(MODItems)
+      # stat part
+      current_user = request.user
+      store_user_action(current_user.id, 'Message of the day request')
+      return JsonResponse(serializer.data, safe=False)
+
+    except:
+      return HttpResponse(status=404)
+
 def MOD_detail(request, pk):
   try:
     #obtain the task with the passed id

@@ -46,6 +46,9 @@ class ChoiceList(APIView):
         return Response(serializer.data)
 
     def post(self, request, pk):
+        # stats
+        current_user = request.user
+        store_user_action(current_user.id, 'Choice posted')
 
         serializer = ChicesSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -77,6 +80,10 @@ class VoteList(APIView):
         user_voted = Vote.objects.filter(poll=pk,choice=id, vote_user = self.request.user.id)
 
         if not user_voted.exists():
+            # stats
+            current_user = request.user
+            store_user_action(current_user.id, 'Choice voted')
+
             #zmieniłem  serlaizer zeby zapisaywać usera z requesta (VoteSerializer)
             serializer.save(vote_user=self.request.user)
             return Response(serializer.data)

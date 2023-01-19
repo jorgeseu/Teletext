@@ -35,6 +35,8 @@ AUTH_USER_MODEL = 'accounts.UserData'
 
 # Application definition
 
+#SITE_ID = 1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,7 +73,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#fix
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 ROOT_URLCONF = 'teletext.urls'
 
 TEMPLATES = [
@@ -166,9 +169,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = 'core/templates/static/'
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 MEDIA_URL = 'core/media/'
-STATIC_ROOT = '/var/www/teletext/teletext_core/teletext/teletext/core/templates/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
