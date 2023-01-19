@@ -12,6 +12,8 @@ from.serializers import PollSerializer, ChicesSerializer, VoteSerializer ,VoteCo
 from annoucement.permissions import IsOwnerOrReadOnly
 from django.db.models import Count
 from django.db.models import Sum
+#stats
+from core.stats_helper import store_user_action
 
 
 from django.http import JsonResponse
@@ -44,7 +46,9 @@ class ChoiceList(APIView):
         return Response(serializer.data)
 
     def post(self, request, pk):
-
+        #stats
+        current_user = request.user
+        store_user_action(current_user.id, 'Poll posted')
         serializer = ChicesSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -62,7 +66,6 @@ class ChoiceList(APIView):
 #votes list and create vote on specific choice
 class VoteList(APIView):
 
-    permission_classes = (IsAuthenticatedOrReadOnly,)
     def get(self, request, pk, id):
         queryset = Vote.objects.filter(poll = pk , choice = id)
         serializer = VoteSerializer(queryset, many=True)
@@ -75,8 +78,12 @@ class VoteList(APIView):
         user_voted = Vote.objects.filter(poll=pk,choice=id, vote_user = self.request.user.id)
 
         if not user_voted.exists():
+            # stats
+            current_user = request.user
+            store_user_action(current_user.id, 'Post voted')
             #zmieniłem  serlaizer zeby zapisaywać usera z requesta (VoteSerializer)
             serializer.save(vote_user=self.request.user)
+
             return Response(serializer.data)
 
         else:
