@@ -9,7 +9,7 @@ class Fetching_current_data():
 
     def fetch_data(self, commit=True):
         #fetching all programs here at once
-        for i in range(14):
+        for i in range(7):
             n_day = date.today() + timedelta(i)
             #wzór https://www.tvp.pl/prasa/programTVP1/p0101_T1D.txt
             #tu pakujemy wynik
@@ -24,14 +24,14 @@ class Fetching_current_data():
             #TVP2
     def get_prog_data(self, prog_ID, prog_date, link_1, link_2, commit=True,):
         d3 = prog_date.strftime("%m%d")
-        print("d3 =", d3)
+        #print("d3 =", d3)
         response = requests.get(link_1 + d3 + link_2)
         p_data = response.text
-        c_item= ProgramItem(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
-        try:
-            obj = ProgramItem.objects.get(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
-        except:
+        created_items = ProgramItem.objects.get(program_ID = prog_ID, program_date=prog_date)
+        if not created_items:
+            c_item = ProgramItem(program_ID=prog_ID, program_date=prog_date, program_data=p_data)
             c_item.save()
+
 
 
 
