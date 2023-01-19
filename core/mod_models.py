@@ -9,4 +9,4 @@ class MOD_item(models.Model):
         verbose_name_plural = "message_content"
 
     def __str__(self):
-        return self.message_ID
+        return self.message_content

@@ -10,9 +10,9 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 class MODSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MOD_item
-        fields = ['id', 'message_ID', 'message_date', 'message_content']
+        fields = ['message_ID', 'message_date', 'message_content']
 
 class StatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stat_item
-        fields = ['id', 'stat_ID', 'stat_message', 'stat_user', 'stat_datetime']
+        fields = [ 'stat_ID', 'stat_message', 'stat_user', 'stat_datetime']
