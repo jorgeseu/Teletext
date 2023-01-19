@@ -75,17 +75,19 @@ class VoteList(APIView):
         #sprawdzic
         serializer = VoteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user_voted = Vote.objects.filter(poll=pk, vote_user = self.request.user)
+        user_voted = Vote.objects.filter(poll=pk,choice=id, vote_user = self.request.user.id)
 
         if not user_voted.exists():
             # stats
             current_user = request.user
             store_user_action(current_user.id, 'Post voted')
-            serializer.save()
+            #zmieniłem  serlaizer zeby zapisaywać usera z requesta (VoteSerializer)
+            serializer.save(vote_user=self.request.user)
+
             return Response(serializer.data)
 
-
-        return Response({"detail": "You can vote only once"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"detail": "You can vote only once"}, status=status.HTTP_400_BAD_REQUEST)
 
 #do wywalenia
 # class VoteListCount(APIView):

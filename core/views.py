@@ -112,6 +112,7 @@ def MOD_detail(request, pk):
     MOD_item.delete()
     # return a no content response.
     return HttpResponse(status=204)
+
 def StatItems(request):
   if(request.method == 'GET'):
     Stat_items = Action.objects.get(message_date=date.today())

@@ -4,9 +4,10 @@ frontend/
 db.sqlite3
 __pycache__/
 migrations/
+!migrations/__init__.py
 pull_code.sh
 package-lock.json
 package.json
-__pycache__/
-*.py[cod]
-*$py.class
+/env
+*.env
+
